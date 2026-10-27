@@ -1,0 +1,44 @@
+name: build
+
+on:
+  push:
+    tags: ["v*"]
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+
+      - name: install neutralino cli
+        run: npm install -g @neutralinojs/neu
+
+      - name: fetch pinned binaries
+        run: neu update
+
+      - name: build
+        run: neu build --release
+
+      - name: zip windows bundle
+        run: |
+          cd dist/RS6-Executor-UI
+          zip -9 ../RS6-Executor-UI-win-x64.zip RS6-Executor-UI-win_x64.exe resources.neu
+
+      - uses: actions/upload-artifact@v4
+        with:
+          name: RS6-Executor-UI-win-x64
+          path: dist/RS6-Executor-UI-win-x64.zip
+
+      - name: release
+        if: startsWith(github.ref, 'refs/tags/v')
+        uses: softprops/action-gh-release@v2
+        with:
+          files: dist/RS6-Executor-UI-win-x64.zip

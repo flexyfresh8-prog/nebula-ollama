@@ -1,0 +1,8 @@
+# keep built binaries out of git — the zip ships on the GitHub Release
+/bin/
+/dist/
+node_modules/
+.tmp/
+.storage
+*.log
+.lite_workspace.lua

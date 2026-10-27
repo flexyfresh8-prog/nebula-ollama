@@ -1,0 +1,51 @@
+{
+  "$schema": "https://raw.githubusercontent.com/neutralinojs/neutralinojs/main/schemas/neutralino.config.schema.json",
+  "applicationId": "ai.nebula.studio",
+  "version": "2.0.0",
+  "defaultMode": "window",
+  "port": 0,
+  "documentRoot": "/resources/",
+  "url": "/",
+  "enableServer": true,
+  "enableNativeAPI": true,
+  "tokenSecurity": "one-time",
+  "logging": {
+    "enabled": true,
+    "writeToLogFile": true
+  },
+  "nativeAllowList": [
+    "app.*",
+    "window.*",
+    "debug.*",
+    "os.*",
+    "filesystem.*"
+  ],
+  "modes": {
+    "window": {
+      "title": "NEBULA // local ai studio",
+      "width": 1020,
+      "height": 660,
+      "minWidth": 900,
+      "minHeight": 600,
+      "center": true,
+      "fullScreen": false,
+      "alwaysOnTop": false,
+      "icon": "/resources/icons/appIcon.png",
+      "enableInspector": false,
+      "borderless": true,
+      "maximize": false,
+      "hidden": false,
+      "resizable": true,
+      "maximizable": true,
+      "exitProcessOnClose": true
+    }
+  },
+  "cli": {
+    "binaryName": "Nebula",
+    "resourcesPath": "/resources/",
+    "extensionsPath": "/extensions/",
+    "clientLibrary": "/resources/js/neutralino.js",
+    "binaryVersion": "6.10.0",
+    "clientVersion": "6.10.0"
+  }
+}
